@@ -1,0 +1,61 @@
+* {
+    margin: 0; padding: 0;
+}
+
+.contanier-form {
+    margin: 5rem 0;
+}
+
+.btn-enviar {
+    margin-top: .5rem;
+    width: 60%;
+    border: 1px solid #000;
+    background-color: aqua;
+}
+
+#convertir-btn {
+    width: 70%;
+}
+
+.notas-container {
+    margin: 5rem auto;
+    padding: 1rem 0;
+    width: 55%;
+    border-radius: 7px;
+}
+
+.btns-container button {
+    width: 250px;
+    border-radius: 7px;
+    padding: 3px 0;
+}
+
+#textarea-card {
+    resize: none;
+}
+.title-container{
+    text-align: center;
+    padding: 12px 0;
+    background-color: #ebe9e9;
+    border-bottom: 1px solid #a7a3a3;
+    width: 100%;
+}
+.btn-card {
+    width: 80%;
+    margin-bottom: 15px;
+    padding: 6px 0;
+    border-radius: 10px;
+    border: none;
+}
+.card-container {
+    border-radius: 8px;
+    padding: 0 10px;
+}
+
+.grupocards-container {
+    border-radius: 8px;
+    flex-wrap: wrap;
+}
+.p-cards {
+    margin: 40px 0;
+}
