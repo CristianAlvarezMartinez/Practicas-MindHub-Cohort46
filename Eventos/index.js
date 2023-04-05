@@ -25,6 +25,10 @@ btn.addEventListener('click', () => {
 })
 
 
+
+
+
+
 /*Realizar una aplicación de notas (el front queda a gusto de cada uno).*/
 
 const notasContenedor = document.getElementById('notas-contenedor-id')
@@ -41,6 +45,7 @@ const plantillaNotas = nota => {
             </div>
     `
 }
+
 
 let cadenaNotas = ''  
 const crearNota = (array) => {
@@ -70,17 +75,21 @@ const agregarNota = (tiutlo, texto) => {
     arrayNotas.push(nota)
 } 
 
+
 const borrarNota = id => {
+    let newTemplate = ''
     let index = arrayNotas.findIndex(objeto => objeto.id === id)
     if(index >= 0) {
         arrayNotas.splice(index, 1)
+        for(i of arrayNotas) {
+            newTemplate += plantillaNotas(i)
+        }
+        notasContenedor.innerHTML = newTemplate
     }
-    console.log(arrayNotas)
 }
 
 let valueTitulo = ''
 let valueTexto = ''
-
 const botonGuardar = document.getElementById('guardar')
 
 botonGuardar.addEventListener('click', () => {
