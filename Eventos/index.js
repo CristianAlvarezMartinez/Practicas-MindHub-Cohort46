@@ -27,60 +27,69 @@ btn.addEventListener('click', () => {
 
 /*Realizar una aplicación de notas (el front queda a gusto de cada uno).*/
 
-const arrayNotas = [
-    {
-        id: 1,
-        titulo: 'Sacar la basura',
-        texto: 'Mi mamá me reta si no lo hago',
-        realizada: false 
+const notasContenedor = document.getElementById('notas-contenedor-id')
+const arrayNotas = []
 
-    },
-    {
-        id: 2,
-        titulo: 'Hacer la cama',
-        texto: 'Mi mamá me reta si no lo hago',
-        realizada: false 
-
-    },
-    {
-        id: 3,
-        titulo: 'Lavar los platos',
-        texto: 'Mi mamá me reta si no lo hago',
-        realizada: false 
-
-    },
-    {
-        id: 4,
-        titulo: 'Pasear el perro',
-        texto: 'Mi mamá me reta si no lo hago',
-        realizada: false 
-
-    }]
-
-let idGoblal = 4
-
-const crearNota = () => {
+const plantillaNotas = nota => {
     return `<div class="card-container bg-light col-xxl-2 col-xl-3 d-flex flex-column align-items-center">
                 <div class="title-container d-flex justify-content-center gap-2">
                     <input type="checkbox" id="checkbox-card">
-                    <label for="checkbox-card">Sacar la basura</label>
+                    <label for="checkbox-card">${nota.titulo}</label>
                 </div>
-                <p class="text-center p-cards">Mi mama me va a retar si no lo hago</p>
-                <button class="bg-danger btn-card">Borrar nota</button>
+                <p class="text-center p-cards">${nota.texto}</p>
+                <button onclick="borrarNota(${nota.id})" class="bg-danger btn-card">Borrar nota</button>
             </div>
     `
+}
+
+let cadenaNotas = ''  
+const crearNota = (array) => {
+    if(array.length == 1) {
+        cadenaNotas = plantillaNotas(array[0])
+    }
+    cadenaNotas = plantillaNotas(array[array.length - 1])
 }
 
 const agregarNota = (tiutlo, texto) => {
     let nota = {
 
-                id: 1,
+                id:'',
                 titulo: tiutlo,
                 texto: texto,
                 realizada: false
 
 
            }
+           
+    if(arrayNotas.length == 0){
+           nota.id = 1
+    }
+    else if (arrayNotas.length >= 1) {
+         nota.id = arrayNotas[arrayNotas.length - 1].id + 1
+    }
     arrayNotas.push(nota)
 } 
+
+const borrarNota = id => {
+    let index = arrayNotas.findIndex(objeto => objeto.id === id)
+    if(index >= 0) {
+        arrayNotas.splice(index, 1)
+    }
+    console.log(arrayNotas)
+}
+
+let valueTitulo = ''
+let valueTexto = ''
+
+const botonGuardar = document.getElementById('guardar')
+
+botonGuardar.addEventListener('click', () => {
+    valueTitulo = document.getElementById('nota-tiutlo').value
+    valueTexto = document.getElementById('textarea-card').value
+    if(valueTitulo != '' && valueTexto != '') {
+        agregarNota(valueTitulo, valueTexto)
+        crearNota(arrayNotas)
+        notasContenedor.innerHTML += cadenaNotas
+    }    
+})
 
